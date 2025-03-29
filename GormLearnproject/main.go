@@ -16,6 +16,9 @@ func main() {
 		log.Fatal(err)
 	}
 
+	// 初始化 Redis 连接
+	rdb := config.InitRedis()
+
 	// 自动迁移数据库表
 	err = db.AutoMigrate(&model.User{})
 	if err != nil {
@@ -25,7 +28,7 @@ func main() {
 	r := gin.Default()
 
 	// 注册用户路由
-	user.RegisterRoutes(r, db)
+	user.RegisterRoutes(r, db, rdb)
 
 	r.Run(":8080")
 }
