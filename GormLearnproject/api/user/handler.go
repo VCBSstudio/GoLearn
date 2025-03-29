@@ -44,7 +44,7 @@ func (h *Handler) Create(c *gin.Context) {
 
 func (h *Handler) List(c *gin.Context) {
 	ctx := context.Background()
-	cacheKey := "users:all"
+	cacheKey := "users:all:v1"  // 添加版本号
 
 	// 尝试从缓存获取
 	cachedData, err := h.rdb.Get(ctx, cacheKey).Result()
@@ -67,10 +67,10 @@ func (h *Handler) List(c *gin.Context) {
 		return
 	}
 
-	// 将数据存入缓存
+	// 将数据存入缓存，设置合理的过期时间
 	if usersJson, err := json.Marshal(users); err == nil {
-		h.rdb.Set(ctx, cacheKey, usersJson, 5*time.Minute)
-		fmt.Println("数据已存入 Redis 缓存") // 添加日志
+		// 用户列表变化不频繁，可以缓存久一点
+		h.rdb.Set(ctx, cacheKey, usersJson, 30*time.Minute)
 	}
 
 	c.JSON(200, users)
