@@ -1,24 +1,31 @@
 package main
 
 import (
-    "myginproject/api/ping"
-    "myginproject/api/user"
-    "myginproject/middleware"
-    "github.com/gin-gonic/gin"
+	"io"
+	"myginproject/api/ping"
+	"myginproject/api/user"
+	"myginproject/middleware"
+	"os"
+
+	"github.com/gin-gonic/gin"
 )
 
 func main() {
-    r := gin.Default()
-    
-    // 注册中间件
-    r.Use(middleware.SimpleRecovery())
-    
-    // 注册各个模块的路由
-    ping.RegisterRoutes(r)
-    user.RegisterRoutes(r)
-    // 后续添加其他模块的路由注册
-    // product.RegisterRoutes(r)
-    // order.RegisterRoutes(r)
-    
-    r.Run(":9000")
+	// 设置日志输出为标准输出（默认）
+	gin.DisableConsoleColor()
+	// 创建日志文件
+	f, _ := os.Create("gin.log")
+	gin.DefaultWriter = io.MultiWriter(f, os.Stdout)
+
+	r := gin.Default() // gin.Default() 已经包含了 Logger 中间件
+
+	// 注册中间件
+	r.Use(middleware.Logger()) // 添加日志中间件
+	r.Use(middleware.SimpleRecovery())
+
+	// 注册各个模块的路由
+	ping.RegisterRoutes(r)
+	user.RegisterRoutes(r)
+
+	r.Run(":9000")
 }
