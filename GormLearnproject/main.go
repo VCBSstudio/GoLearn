@@ -4,16 +4,20 @@ import (
 	"GormLearnproject/api/user"
 	"GormLearnproject/config"
 	"GormLearnproject/model"
+	"GormLearnproject/utils"
 	"log"
 
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
+	// 初始化日志
+	utils.InitLogger()
+
 	// 初始化数据库连接
 	db, err := config.InitDB()
 	if err != nil {
-		log.Fatal(err)
+		utils.Logger.Fatal(err)
 	}
 
 	// 初始化 Redis 连接
