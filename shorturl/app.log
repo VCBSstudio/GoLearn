@@ -1,0 +1,12 @@
+{"error":"Error 1292 (22007): Incorrect datetime value: '0000-00-00' for column 'last_visit' at row 1","level":"error","msg":"创建短链接失败 - 数据库错误","time":"2025-03-30T17:00:51+08:00"}
+{"error":"创建短链接失败","level":"error","method":"POST","msg":"API错误","path":"/api/urls","status":500,"time":"2025-03-30T17:00:51+08:00"}
+{"error":"Error 1292 (22007): Incorrect datetime value: '0000-00-00' for column 'last_visit' at row 1","level":"error","msg":"创建短链接失败 - 数据库错误","time":"2025-03-30T17:01:54+08:00"}
+{"error":"创建短链接失败","level":"error","method":"POST","msg":"API错误","path":"/api/urls","status":500,"time":"2025-03-30T17:01:54+08:00"}
+{"error":"Error 1292 (22007): Incorrect datetime value: '0000-00-00' for column 'last_visit' at row 1","level":"error","msg":"创建短链接失败 - 数据库错误","time":"2025-03-30T17:02:47+08:00"}
+{"error":"创建短链接失败","level":"error","method":"POST","msg":"API错误","path":"/api/urls","status":500,"time":"2025-03-30T17:02:47+08:00"}
+{"error":"短链接不存在","level":"error","method":"GET","msg":"API错误","path":"/生成的短码","status":404,"time":"2025-03-30T17:03:15+08:00"}
+{"error":"Error 1292 (22007): Incorrect datetime value: '0000-00-00' for column 'last_visit' at row 1","level":"error","msg":"创建短链接失败 - 数据库错误","time":"2025-03-30T17:03:26+08:00"}
+{"error":"创建短链接失败","level":"error","method":"POST","msg":"API错误","path":"/api/urls","status":500,"time":"2025-03-30T17:03:26+08:00"}
+{"error":"Error 1146 (42S02): Table 'shorturl.urls' doesn't exist","level":"error","msg":"创建短链接失败 - 数据库错误","time":"2025-03-30T17:07:50+08:00"}
+{"error":"创建短链接失败","level":"error","method":"POST","msg":"API错误","path":"/api/urls","status":500,"time":"2025-03-30T17:07:50+08:00"}
+{"error":"短链接不存在","level":"error","method":"GET","msg":"API错误","path":"/生成的短码","status":404,"time":"2025-03-30T17:08:35+08:00"}
