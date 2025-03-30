@@ -1,27 +1,32 @@
 package config
 
 import (
-	"database/sql"
-	"time"
+	"fmt"
+	"os"
 
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
 
 func InitDB() (*gorm.DB, error) {
-	dsn := "root:Hly@1234@tcp(127.0.0.1:3306)/shorturl?charset=utf8mb4&parseTime=True&loc=Local"
+	// 从环境变量获取数据库配置
+	host := getEnv("DB_HOST", "localhost")
+	port := getEnv("DB_PORT", "3306")
+	user := getEnv("DB_USER", "root")
+	password := getEnv("DB_PASSWORD", "Hly@1234")
+	dbname := getEnv("DB_NAME", "shorturl")
 
-	sqlDB, err := sql.Open("mysql", dsn)
-	if err != nil {
-		return nil, err
+	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local",
+		user, password, host, port, dbname)
+
+	return gorm.Open(mysql.Open(dsn), &gorm.Config{})
+}
+
+// 获取环境变量，如果不存在则返回默认值
+func getEnv(key, defaultValue string) string {
+	value := os.Getenv(key)
+	if value == "" {
+		return defaultValue
 	}
-
-	// 配置连接池
-	sqlDB.SetMaxIdleConns(10)
-	sqlDB.SetMaxOpenConns(100)
-	sqlDB.SetConnMaxLifetime(time.Hour)
-
-	return gorm.Open(mysql.New(mysql.Config{
-		Conn: sqlDB,
-	}), &gorm.Config{})
+	return value
 }
