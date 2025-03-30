@@ -58,9 +58,11 @@ func (h *Handler) Create(c *gin.Context) {
 }
 
 func (h *Handler) Redirect(c *gin.Context) {
+	// 使用Redis缓存热门URL
 	code := c.Param("code")
 	ctx := context.Background()
 
+	// 先检查Redis缓存
 	originalURL, err := h.rdb.Get(ctx, "url:"+code).Result()
 	if err == nil {
 		go h.updateVisits(code)
@@ -68,12 +70,14 @@ func (h *Handler) Redirect(c *gin.Context) {
 		return
 	}
 
+	// 数据库查询使用Select只获取必要字段
 	var url model.URL
-	if err := h.db.Where("short_code = ?", code).First(&url).Error; err != nil {
+	if err := h.db.Select("original_url").Where("short_code = ?", code).First(&url).Error; err != nil {
 		utils.ErrorResponse(c, 404, "短链接不存在")
 		return
 	}
 
+	// 缓存到Redis
 	h.rdb.Set(ctx, "url:"+code, url.OriginalURL, 24*time.Hour)
 	go h.updateVisits(code)
 	c.Redirect(302, url.OriginalURL)
