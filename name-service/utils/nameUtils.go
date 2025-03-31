@@ -42,8 +42,3 @@ func CalculateStrokesScore(totalStrokes int) int {
 
 	return 70
 }
-
-// func CalculateBaZiScore(info *models.BirthInfo, element1, element2 string) int {
-// 	// 这里可以实现更复杂的八字评分算法
-// 	return 80
-// }

@@ -1,12 +1,12 @@
 package models
 
 type BirthInfo struct {
-	Year   int    `json:"year" binding:"required"`
-	Month  int    `json:"month" binding:"required,min=1,max=12"`
-	Day    int    `json:"day" binding:"required,min=1,max=31"`
-	Hour   int    `json:"hour" binding:"required,min=0,max=23"`
-	Minute int    `json:"minute" binding:"required,min=0,max=59"`
-	Gender string `json:"gender" binding:"required,oneof=M F"`
+	Year   int    `json:"year"`
+	Month  int    `json:"month"`
+	Day    int    `json:"day"`
+	Hour   int    `json:"hour"`
+	Minute int    `json:"minute"`
+	Gender string `json:"gender"`
 }
 
 type Name struct {
@@ -18,9 +18,9 @@ type Name struct {
 }
 
 type NameSuggestion struct {
-	FirstName  string `json:"firstName"`
-	LastName   string `json:"lastName"`
-	Meaning    string `json:"meaning"`
+	FirstName   string `json:"firstName"`
+	LastName    string `json:"lastName"`
+	Meaning     string `json:"meaning"`
 	FiveElement string `json:"fiveElement"`
-	Score      int    `json:"score"`
+	Score       int    `json:"score"`
 }
