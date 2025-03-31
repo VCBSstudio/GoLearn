@@ -1,0 +1,31 @@
+{
+  "characters": [
+    {
+      "char": "德",
+      "strokes": 15,
+      "five_element": "土",
+      "meaning": "品德、道德",
+      "score": 90,
+      "gender": "B",
+      "luck": ["吉祥", "高尚"]
+    },
+    {
+      "char": "宇",
+      "strokes": 6,
+      "five_element": "土",
+      "meaning": "宏大、空间",
+      "score": 85,
+      "gender": "M",
+      "luck": ["开阔", "远大"]
+    },
+    {
+      "char": "轩",
+      "strokes": 10,
+      "five_element": "木",
+      "meaning": "高大、气宇轩昂",
+      "score": 88,
+      "gender": "M",
+      "luck": ["高贵", "典雅"]
+    }
+  ]
+}
